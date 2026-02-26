@@ -1,0 +1,64 @@
+.library-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.library-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Album Grid */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.album-card {
+    background: var(--color-bg-grouped-secondary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.album-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.album-thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--color-fill-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.album-info {
+    padding: var(--spacing-md);
+}
+
+.album-title {
+    font-size: var(--font-size-subheadline);
+    font-weight: 600;
+    color: var(--color-label);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.album-count {
+    font-size: var(--font-size-caption1);
+    color: var(--color-label-tertiary);
+    margin-top: 2px;
+}

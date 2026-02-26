@@ -1,0 +1,214 @@
+.tree-page {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--header-height) - var(--spacing-xl) * 2);
+    gap: var(--spacing-md);
+}
+
+.tree-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-grouped-secondary);
+    border-radius: var(--radius-lg);
+}
+
+.tree-toolbar h3 {
+    margin: 0;
+    font-size: var(--font-size-headline);
+    font-weight: 600;
+    color: var(--color-label);
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background: var(--color-fill-tertiary);
+    border-radius: var(--radius-sm);
+    padding: 2px;
+}
+
+.zoom-value {
+    font-size: var(--font-size-caption1);
+    font-weight: 600;
+    color: var(--color-label-secondary);
+    min-width: 40px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Tree Container */
+.tree-container {
+    flex: 1;
+    background: var(--color-bg-grouped-secondary);
+    border-radius: var(--radius-lg);
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    cursor: grab;
+    position: relative;
+}
+
+.tree-container:active {
+    cursor: grabbing;
+}
+
+.tree-canvas {
+    transition: transform 0.2s ease;
+    transform-origin: top center;
+    padding: var(--spacing-4xl) var(--spacing-3xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+}
+
+/* Node Structure */
+.tree-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Vertical connector */
+.tree-branch>.tree-node::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: var(--color-separator);
+}
+
+/* Node Card - SwiftUI style */
+.node-card {
+    background: var(--color-bg-grouped-secondary);
+    border: 1px solid var(--color-separator-opaque);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: center;
+    min-width: 150px;
+    max-width: 180px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    z-index: 2;
+}
+
+.node-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.root-card {
+    border-color: var(--color-accent);
+    background: linear-gradient(180deg, rgba(0, 122, 255, 0.04) 0%, var(--color-bg-grouped-secondary) 100%);
+    min-width: 180px;
+}
+
+.node-photo {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+    display: flex;
+    justify-content: center;
+}
+
+.node-photo.alive {
+    position: relative;
+}
+
+.node-photo.alive::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: calc(50% - 18px);
+    width: 10px;
+    height: 10px;
+    background: var(--color-green);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-bg-grouped-secondary);
+}
+
+.node-name {
+    font-size: var(--font-size-subheadline);
+    font-weight: 600;
+    color: var(--color-label);
+    white-space: nowrap;
+}
+
+.node-meta {
+    font-size: var(--font-size-caption1);
+    color: var(--color-label-tertiary);
+    margin-top: 2px;
+}
+
+.node-dates {
+    font-size: var(--font-size-caption2);
+    color: var(--color-label-quaternary);
+    margin-top: 2px;
+}
+
+/* Branch layout */
+.tree-branch {
+    display: flex;
+    gap: var(--spacing-xl);
+    padding-top: 20px;
+    position: relative;
+}
+
+/* Horizontal connecting line */
+.tree-branch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 2px;
+    background: var(--color-separator);
+}
+
+/* Calc horizontal line from first to last child center */
+.tree-branch::before {
+    left: calc(50% / var(--children-count, 1));
+    right: calc(50% / var(--children-count, 1));
+}
+
+/* Simpler: just span from first child to last */
+.tree-branch>.tree-node:first-child~.tree-node:last-child~.tree-branch::before,
+.tree-branch::before {
+    left: 50px;
+    right: 50px;
+}
+
+/* Vertical connector from parent to horizontal line */
+.tree-node>.tree-branch::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: var(--color-separator);
+    transform: translateX(-50%);
+    display: none;
+}
+
+/* Root node has no top connector */
+.tree-node.root>.tree-branch>.tree-node::before {
+    background: var(--color-accent);
+    opacity: 0.4;
+}
+
+.leaf-card {
+    min-width: 140px;
+}

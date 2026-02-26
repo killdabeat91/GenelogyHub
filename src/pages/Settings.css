@@ -1,0 +1,93 @@
+.settings-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* iOS-style Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 51px;
+    height: 31px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-fill);
+    border-radius: 31px;
+    transition: background-color 0.25s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 27px;
+    width: 27px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.25s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-switch input:checked+.toggle-slider {
+    background-color: var(--color-green);
+}
+
+.toggle-switch input:checked+.toggle-slider::before {
+    transform: translateX(20px);
+}
+
+.settings-select {
+    appearance: none;
+    background: var(--color-fill-tertiary);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    font-size: var(--font-size-subheadline);
+    color: var(--color-accent);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.settings-select:focus {
+    outline: none;
+}
+
+.settings-logout {
+    margin-top: var(--spacing-xl);
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--color-bg-grouped-secondary);
+    color: var(--color-red);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.logout-btn:hover {
+    background: rgba(255, 59, 48, 0.08);
+}

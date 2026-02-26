@@ -1,0 +1,508 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* === SwiftUI Color System === */
+  /* Backgrounds - iOS Grouped style */
+  --color-bg-primary: #F2F2F7;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #F2F2F7;
+  --color-bg-grouped: #F2F2F7;
+  --color-bg-grouped-secondary: #FFFFFF;
+
+  /* Label Colors */
+  --color-label: #000000;
+  --color-label-secondary: #3C3C43;
+  --color-label-tertiary: #3C3C4399;
+  --color-label-quaternary: #3C3C4366;
+
+  /* Accent Colors - iOS System Colors */
+  --color-accent: #007AFF;
+  --color-accent-hover: #0066D6;
+  --color-green: #34C759;
+  --color-red: #FF3B30;
+  --color-orange: #FF9500;
+  --color-yellow: #FFCC00;
+  --color-purple: #AF52DE;
+  --color-pink: #FF2D55;
+  --color-teal: #5AC8FA;
+  --color-indigo: #5856D6;
+
+  /* Separator */
+  --color-separator: #C6C6C8;
+  --color-separator-opaque: #E5E5EA;
+
+  /* Fill Colors */
+  --color-fill: rgba(120, 120, 128, 0.2);
+  --color-fill-secondary: rgba(120, 120, 128, 0.16);
+  --color-fill-tertiary: rgba(120, 120, 128, 0.12);
+
+  /* Typography - SF Pro inspired (using Inter) */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+  --font-size-caption2: 0.6875rem;
+  /* 11px */
+  --font-size-caption1: 0.75rem;
+  /* 12px */
+  --font-size-footnote: 0.8125rem;
+  /* 13px */
+  --font-size-subheadline: 0.9375rem;
+  /* 15px */
+  --font-size-callout: 1rem;
+  /* 16px */
+  --font-size-body: 1.0625rem;
+  /* 17px */
+  --font-size-headline: 1.0625rem;
+  /* 17px semibold */
+  --font-size-title3: 1.25rem;
+  /* 20px */
+  --font-size-title2: 1.375rem;
+  /* 22px */
+  --font-size-title1: 1.75rem;
+  /* 28px */
+  --font-size-large-title: 2.125rem;
+  /* 34px */
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  --spacing-4xl: 40px;
+
+  /* Border Radius - SwiftUI rounded rectangles */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows - Very subtle iOS-like */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 0.5px 0 rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 52px;
+  --content-max-width: 1100px;
+}
+
+/* === Dark Mode (iOS Dark) === */
+[data-theme="dark"] {
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #1C1C1E;
+  --color-bg-tertiary: #2C2C2E;
+  --color-bg-grouped: #000000;
+  --color-bg-grouped-secondary: #1C1C1E;
+
+  --color-label: #FFFFFF;
+  --color-label-secondary: #EBEBF5;
+  --color-label-tertiary: #EBEBF599;
+  --color-label-quaternary: #EBEBF54D;
+
+  --color-accent: #0A84FF;
+  --color-accent-hover: #409CFF;
+  --color-green: #30D158;
+  --color-red: #FF453A;
+  --color-orange: #FF9F0A;
+  --color-yellow: #FFD60A;
+  --color-purple: #BF5AF2;
+  --color-pink: #FF375F;
+  --color-teal: #64D2FF;
+  --color-indigo: #5E5CE6;
+
+  --color-separator: #38383A;
+  --color-separator-opaque: #38383A;
+
+  --color-fill: rgba(120, 120, 128, 0.36);
+  --color-fill-secondary: rgba(120, 120, 128, 0.32);
+  --color-fill-tertiary: rgba(120, 120, 128, 0.24);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  background-clip: padding-box;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+  background-clip: padding-box;
+}
+
+/* === Base Reset === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg-grouped);
+  color: var(--color-label);
+  line-height: 1.47;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+  font-size: inherit;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: var(--font-size-body);
+}
+
+/* === SwiftUI-Style Utility Classes === */
+
+/* Grouped Section (like iOS Settings) */
+.section-group {
+  background: var(--color-bg-grouped-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.section-header {
+  font-size: var(--font-size-footnote);
+  font-weight: 400;
+  color: var(--color-label-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-sm) var(--spacing-lg);
+}
+
+.section-footer {
+  font-size: var(--font-size-footnote);
+  color: var(--color-label-tertiary);
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  line-height: 1.4;
+}
+
+/* SwiftUI List Row */
+.list-row {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-bg-grouped-secondary);
+  min-height: 44px;
+  gap: var(--spacing-md);
+  transition: background-color var(--transition-fast);
+  cursor: pointer;
+  position: relative;
+}
+
+.list-row:active {
+  background-color: var(--color-fill-tertiary);
+}
+
+.list-row+.list-row {
+  border-top: 0.5px solid var(--color-separator-opaque);
+}
+
+.list-row .row-leading {
+  flex-shrink: 0;
+}
+
+.list-row .row-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-row .row-trailing {
+  flex-shrink: 0;
+  color: var(--color-label-tertiary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.list-row .chevron::after {
+  content: '›';
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--color-label-quaternary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s ease forwards;
+}
+
+/* Scrollbar - macOS style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+  background-clip: padding-box;
+}
+
+/* === Premium Animations === */
+
+/* Skeleton Loading Pulse */
+@keyframes skeletonPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+/* Pulse Dot (live indicator) */
+.pulse-dot-wrapper {
+  position: relative;
+}
+
+.pulse-ring {
+  position: absolute;
+  border: 2px solid;
+  border-radius: var(--radius-full);
+  animation: pulseRing 2s ease-out infinite;
+  opacity: 0;
+}
+
+.pulse-core {
+  border-radius: var(--radius-full);
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Page Transition */
+.page-transition-enter {
+  animation: pageEnter 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover Glow Effect */
+.hover-glow {
+  transition: box-shadow var(--transition-base), transform var(--transition-fast);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 122, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-3px);
+}
+
+/* Gradient Backgrounds */
+.gradient-blue {
+  background: linear-gradient(135deg, #007AFF, #5856D6);
+}
+
+.gradient-green {
+  background: linear-gradient(135deg, #34C759, #30D158);
+}
+
+.gradient-red {
+  background: linear-gradient(135deg, #FF3B30, #FF2D55);
+}
+
+.gradient-orange {
+  background: linear-gradient(135deg, #FF9500, #FFCC00);
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #AF52DE, #5856D6);
+}
+
+.gradient-teal {
+  background: linear-gradient(135deg, #5AC8FA, #007AFF);
+}
+
+/* Staggered enter animation for list items */
+.stagger-enter>* {
+  animation: slideUp 0.35s ease both;
+}
+
+.stagger-enter>*:nth-child(1) {
+  animation-delay: 0.03s;
+}
+
+.stagger-enter>*:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.stagger-enter>*:nth-child(3) {
+  animation-delay: 0.09s;
+}
+
+.stagger-enter>*:nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+.stagger-enter>*:nth-child(5) {
+  animation-delay: 0.15s;
+}
+
+.stagger-enter>*:nth-child(6) {
+  animation-delay: 0.18s;
+}
+
+.stagger-enter>*:nth-child(7) {
+  animation-delay: 0.21s;
+}
+
+.stagger-enter>*:nth-child(8) {
+  animation-delay: 0.24s;
+}
+
+/* Number animation helper */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Floating Action Button */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.4);
+  transition: all var(--transition-fast);
+  z-index: 900;
+  border: none;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(0, 122, 255, 0.5);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
